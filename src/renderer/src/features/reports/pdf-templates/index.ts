@@ -1,0 +1,8 @@
+export { buildCoagulationPDF } from './CoagulationPDF'
+export { buildPatientHistoryPDF } from './PatientHistoryPDF'
+export { buildChemistryPDF } from './ChemistryPDF'
+export { buildGenericExamPDF } from './GenericExamPDF'
+export { buildHematologyPDF } from './HematologyPDF'
+export { buildSerologyPDF } from './SerologyPDF'
+export { buildHecesPDF } from './HecesPDF'
+export { buildOrinaPDF } from './OrinaPDF'

@@ -1,0 +1,365 @@
+/* --- Variables de tema (modo oscuro por defecto) --- */
+.error-404-mode {
+  --bg-lab: #0a0a0a;
+  --panel-bg: #161b22;
+  --panel-border: #21262d;
+  --text-main: #c9d1d9;
+  --text-label: #8b949e;
+  --shield-bg: radial-gradient(circle, rgba(22,27,34,0.4) 0%, rgba(10,14,20,0.9) 100%);
+
+  --neon-cyan: #00f2fe;
+  --neon-green: #39ff14;
+  --neon-red: #ff073a;
+
+  --shadow-main: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 7, 58, 0.1);
+  --wheel-gradient: radial-gradient(100% 100% at center, hsla(0,0%,0%,0) 46.8%, #30363d 47%, #8b949e 49%, #21262d 51%, hsla(0,0%,0%,0) 51.5%);
+  --dur: 1s;
+}
+
+.error-404-mode.light-mode {
+  --bg-lab: #ebf1f5;
+  --panel-bg: #ffffff;
+  --panel-border: #d0d7de;
+  --text-main: #24292f;
+  --text-label: #57606a;
+  --shield-bg: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(235,241,245,0.5) 100%);
+  --neon-cyan: #007a8c;
+  --neon-green: #1e7d00;
+  --neon-red: #d11a2a;
+  --shadow-main: 0 15px 35px rgba(140, 149, 159, 0.25), 0 0 15px rgba(0, 0, 0, 0.05);
+  --wheel-gradient: radial-gradient(100% 100% at center, hsla(0,0%,0%,0) 46.8%, #bdc3c7 47%, #7f8c8d 49%, #95a5a6 51%, hsla(0,0%,0%,0) 51.5%);
+}
+
+/* --- Estilos base --- */
+.error-404-mode {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-lab);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  color: var(--text-main);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.error-404-mode .lab-station {
+  margin: auto;
+  max-width: 95vw;
+}
+
+.error-404-mode.lab-station {
+  background: var(--panel-bg);
+  border: 2px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 1.5em;
+  box-shadow: var(--shadow-main);
+  width: 32em;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  transition: background-color 0.4s, border-color 0.4s, box-shadow 0.4s;
+}
+
+/* --- Header --- */
+.lab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--panel-border);
+  padding-bottom: 0.75em;
+}
+
+.system-title {
+  color: var(--text-label);
+  font-size: 0.85em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.75em;
+}
+.pulse-dot.red {
+  width: 8px;
+  height: 8px;
+  background-color: var(--neon-red);
+  border-radius: 50%;
+  animation: RedLEDPulse 1s infinite alternate;
+}
+.text-red { color: var(--neon-red);
+  text-shadow: 0 0 5px rgba(255, 7, 58, 0.2); }
+
+/* --- Theme toggle --- */
+.theme-toggle {
+  background: var(--panel-border);
+  border: 1px solid var(--text-label);
+  width: 2.5em;
+  height: 1.4em;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  transition: background-color 0.3s;
+}
+.toggle-icon {
+  width: 1em;
+  height: 1em;
+  background: var(--text-main);
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  transition: transform 0.3s ease, background-color 0.3s;
+}
+.error-404-mode.light-mode .toggle-icon {
+  transform: translateX(1.1em);
+  background: #24292f;
+}
+.error-404-mode.light-mode .theme-toggle {
+  background: #d0d7de;
+}
+
+/* --- Área central --- */
+.main-experimental-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.telemetry-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 1em;
+  border-radius: 6px;
+  border-left: 3px solid var(--neon-red);
+  min-width: 9.5em;
+}
+.error-404-mode.light-mode .telemetry-panel {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.data-group { display: flex; flex-direction: column; }
+.data-label { font-size: 0.65em; color: var(--text-label); }
+.data-value { font-size: 1.1em; font-weight: bold; }
+.text-cyan { color: var(--neon-cyan); }
+.text-green { color: var(--neon-green); }
+.text-pulse { color: var(--neon-red); animation: textFlicker 3s infinite; }
+
+/* --- Escudo / aparato --- */
+.apparatus-shield {
+  position: relative;
+  background: var(--shield-bg);
+  border: 1px solid rgba(255, 7, 58, 0.15);
+  padding: 2.5em;
+  border-radius: 50%;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.15);
+  transition: background 0.4s;
+}
+
+/* Escáner láser */
+.laser-scanner {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,7,58,0) 0%, var(--neon-red) 50%, rgba(255,7,58,0) 100%);
+  z-index: 10;
+  pointer-events: none;
+  animation: laserScan 4s ease-in-out infinite;
+}
+
+/* --- Sistema del señuelo IVSS (con imagen sin comprimir) --- */
+.bait-system {
+  position: absolute;
+  left: 50%;                    /* 👈 Lo centramos al medio del escudo */
+  transform: translateX(-3.8em); /* 👈 Lo movemos a la izquierda para alinearlo con la línea del header */
+  top: -1em;                    /* 👈 Ajustamos la altura para que cuelgue del borde superior */
+  height: 9.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;                  /* 👈 CRUCIAL: Mayor que la rueda (z-index: 2) para que no lo tape nada */
+}
+
+.vacuum-tube {
+  width: 2px;                   /* Más fino para simular el hilo de nailon/acero */
+  height: 6.5em;
+  background: linear-gradient(to bottom, var(--panel-border), var(--text-label));
+}
+
+.blue-node {
+  width: 10px;
+  height: 10px;
+  background-color: #00f2fe;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 2.8em;
+  box-shadow: 0 0 12px #00f2fe;
+  z-index: 21;
+}
+
+.bait-holder {
+  position: absolute;
+  bottom: 0;
+  transform-origin: top center;
+  animation: dangle 2s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ LOGO CORREGIDO: mantiene la proporción original, sin comprimir */
+.ivss-target {
+  width: 3.2em;                 /* Ancho y alto idénticos garantizan un círculo perfecto */
+  height: 3.2em;
+  display: block;
+  object-fit: contain;          /* Protege las proporciones de la silueta familiar */
+  flex-shrink: 0;               /* Evita deformaciones por herencia */
+  background: transparent;      /* Eliminamos fondos planos para usar la transparencia nativa del PNG */
+  border-radius: 50%;
+  padding: 4px;
+  border: 1px dashed rgba(0, 242, 254, 0.6);
+  box-sizing: border-box;
+}
+
+/* --- Botón regresar estilo Tailwind (puro CSS) --- */
+.error-404-mode .btn-regresar {
+  position: relative;
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  padding: 0.75rem 2rem;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+}
+
+.error-404-mode .btn-regresar:hover {
+  background: var(--neon-cyan);
+  color: var(--panel-bg);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), 0 0 60px rgba(0, 242, 254, 0.1);
+  transform: scale(1.02);
+}
+
+/* Línea de escaneo láser (efecto) */
+.error-404-mode .btn-scan-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: none;
+  pointer-events: none;
+}
+
+.error-404-mode .btn-regresar:hover .btn-scan-line {
+  left: 100%;
+  transition: left 0.6s linear;
+}
+
+/* --- Hámster y rueda (diseño original) --- */
+.wheel-and-hamster { position: relative; width: 12em; height: 12em; font-size: 14px; }
+.wheel, .hamster, .hamster div, .spoke { position: absolute; }
+.wheel, .spoke { border-radius: 50%; top: 0; left: 0; width: 100%; height: 100%; }
+
+.wheel { background: var(--wheel-gradient); z-index: 2; transition: background 0.4s; }
+.hamster { animation: hamster var(--dur) ease-in-out infinite; top: 50%; left: calc(50% - 3.5em); width: 7em; height: 3.75em; transform: rotate(4deg) translate(-0.8em,1.85em); transform-origin: 50% 0; z-index: 1; }
+.hamster__head { animation: hamsterHead var(--dur) ease-in-out infinite; background: hsl(25, 75%, 50%); border-radius: 70% 30% 0 100% / 40% 25% 25% 60%; box-shadow: 0 -0.25em 0 hsl(25, 75%, 75%) inset, 0.75em -1.55em 0 hsl(25, 75%, 85%) inset; top: 0; left: -2em; width: 2.75em; height: 2.5em; transform-origin: 100% 50%; }
+.hamster__ear { animation: hamsterEar var(--dur) ease-in-out infinite; background: hsl(0, 70%, 80%); border-radius: 50%; box-shadow: -0.25em 0 hsl(25, 75%, 50%) inset; top: -0.25em; right: -0.25em; width: 0.75em; height: 0.75em; transform-origin: 50% 75%; }
+.hamster__eye { animation: hamsterEye var(--dur) linear infinite; background-color: #111; border-radius: 50%; top: 0.375em; left: 1.25em; width: 0.5em; height: 0.5em; }
+.hamster__nose { background: hsl(0, 70%, 70%); border-radius: 35% 65% 85% 15% / 70% 50% 50% 30%; top: 0.75em; left: 0; width: 0.2em; height: 0.25em; }
+.hamster__body { animation: hamsterBody var(--dur) ease-in-out infinite; background: hsl(25, 60%, 85%); border-radius: 50% 30% 50% 30% / 15% 60% 40% 40%; box-shadow: 0.1em 0.75em 0 hsl(25, 75%, 50%) inset, 0.15em -0.5em 0 hsl(25, 75%, 80%) inset; top: 0.25em; left: 2em; width: 4.5em; height: 3em; transform-origin: 17% 50%; transform-style: preserve-3d; }
+.hamster__limb--fr, .hamster__limb--fl { clip-path: polygon(0 0,100% 0,70% 80%,60% 100%,0% 100%,40% 80%); top: 2em; left: 0.5em; width: 1em; height: 1.5em; transform-origin: 50% 0; }
+.hamster__limb--fr { animation: hamsterFRLimb var(--dur) linear infinite; background: linear-gradient(hsl(25, 75%, 75%) 80%, hsl(0, 70%, 70%) 80%); transform: rotate(15deg) translateZ(-1px); }
+.hamster__limb--fl { animation: hamsterFLLimb var(--dur) linear infinite; background: linear-gradient(hsl(25, 60%, 85%) 80%, hsl(0, 70%, 80%) 80%); transform: rotate(15deg); }
+.hamster__limb--br, .hamster__limb--bl { border-radius: 0.75em 0.75em 0 0; clip-path: polygon(0 0,100% 0,100% 30%,70% 90%,70% 100%,30% 100%,40% 90%,0% 30%); top: 1em; left: 2.8em; width: 1.5em; height: 2.5em; transform-origin: 50% 30%; }
+.hamster__limb--br { animation: hamsterBRLimb var(--dur) linear infinite; background: linear-gradient(hsl(25, 75%, 75%) 90%, hsl(0, 70%, 70%) 90%); transform: rotate(-25deg) translateZ(-1px); }
+.hamster__limb--bl { animation: hamsterBLLimb var(--dur) linear infinite; background: linear-gradient(hsl(25, 60%, 85%) 90%, hsl(0, 70%, 80%) 90%); transform: rotate(-25deg); }
+.hamster__tail { animation: hamsterTail var(--dur) linear infinite; background: hsl(0, 70%, 80%); border-radius: 0.25em 50% 50% 0.25em; box-shadow: 0 -0.2em 0 hsl(0, 70%, 70%) inset; top: 1.5em; right: -0.5em; width: 1em; height: 0.5em; transform: rotate(30deg) translateZ(-1px); transform-origin: 0.25em 0.25em; }
+
+.spoke {
+  animation: spoke var(--dur) linear infinite;
+  background: radial-gradient(100% 100% at center, var(--text-label) 4.8%, hsla(0,0%,0%,0) 5%),
+              linear-gradient(hsla(0,0%,0%,0) 46.9%, var(--panel-border) 47% 52.9%, hsla(0,0%,0%,0) 53%) 50% 50% / 99% 99% no-repeat;
+}
+
+/* --- Footer --- */
+.lab-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  border-top: 1px solid var(--panel-border);
+  padding-top: 0.75em;
+}
+.vent-line {
+  width: 80%;
+  height: 2px;
+  background: var(--panel-border);
+}
+.text-error-code {
+  font-size: 1.65em;
+  color: var(--text-label);
+  letter-spacing: 1px;
+}
+
+/* --- Keyframes --- */
+@keyframes RedLEDPulse { from { opacity: 0.4; } to { opacity: 1; filter: drop-shadow(0 0 6px var(--neon-red)); } }
+@keyframes laserScan { 0%, 100% { top: 0%; opacity: 0; } 10%, 90% { opacity: 0.4; } 50% { top: 100%; opacity: 0.05; } }
+@keyframes dangle { 0% { transform: rotate(-6deg); } 100% { transform: rotate(6deg); } }
+@keyframes textFlicker { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: 0.3; } }
+@keyframes hamster { from, to { transform: rotate(4deg) translate(-0.8em,1.85em); } 50% { transform: rotate(0) translate(-0.8em,1.85em); } }
+@keyframes hamsterHead { from, 25%, 50%, 75%, to { transform: rotate(0); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(8deg); } }
+@keyframes hamsterEye { from, 90%, to { transform: scaleY(1); } 95% { transform: scaleY(0); } }
+@keyframes hamsterEar { from, 25%, 50%, 75%, to { transform: rotate(0); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(12deg); } }
+@keyframes hamsterBody { from, 25%, 50%, 75%, to { transform: rotate(0); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-2deg); } }
+@keyframes hamsterFRLimb { from, 25%, 50%, 75%, to { transform: rotate(50deg) translateZ(-1px); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-30deg) translateZ(-1px); } }
+@keyframes hamsterFLLimb { from, 25%, 50%, 75%, to { transform: rotate(-30deg); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(50deg); } }
+@keyframes hamsterBRLimb { from, 25%, 50%, 75%, to { transform: rotate(-60deg) translateZ(-1px); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(20deg) translateZ(-1px); } }
+@keyframes hamsterBLLimb { from, 25%, 50%, 75%, to { transform: rotate(20deg); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(-60deg); } }
+@keyframes hamsterTail { from, 25%, 50%, 75%, to { transform: rotate(30deg) translateZ(-1px); } 12.5%, 37.5%, 62.5%, 87.5% { transform: rotate(10deg) translateZ(-1px); } }
+@keyframes spoke { from { transform: rotate(0); } to { transform: rotate(-1turn); } }
